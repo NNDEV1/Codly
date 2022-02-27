@@ -1,0 +1,290 @@
+@import 'src/styles/variables'
+@import 'src/styles/mixins'
+@import variables
+
+
+.editor-container
+  position: absolute
+  width: 100%
+  display: flex
+
+
+.problem-browser
+  @include dark-card(false, $radius)
+  position: relative
+  margin: $gap 0 $gap $gap
+  width: $problem-browser-width
+  overflow: hidden
+  $padding-vert: .65rem
+  $padding-horiz: 1.05rem
+  padding: $padding-vert 0 $padding-vert $padding-horiz
+  outline: none
+  transition: width $sidebar-transition-time, margin-right .1s ($sidebar-transition-time * .5)
+  will-change: width, margin-right
+
+  .head
+    font-family: $font-lato
+    font-weight: 700
+    font-size: .9rem
+    letter-spacing: .015em
+    margin-bottom: 1rem
+    margin-right: 2.1rem
+    white-space: nowrap
+    overflow: hidden
+    text-overflow: ellipsis
+
+  .feather-chevrons-left
+    position: absolute
+    $size: 1.05rem
+    top: ($bar-width / 2) - ($size / 2)
+    right: .85rem
+    width: $size
+    height: $size
+    color: $white
+    opacity: .25
+
+    cursor: pointer
+    transition: opacity $sidebar-transition-time * .5 $sidebar-transition-time * .5
+
+    &:hover
+      opacity: .45
+
+  .problems-scroll
+    position: absolute
+    $top: calc(#{$gap} + #{$bar-width} + #{$gap})
+    top: $top
+    left: $padding-horiz
+    height: calc(100vh - #{$top} - #{$gap * 2})
+    width: $problem-browser-width - $padding-horiz
+
+    .problems-tree
+      padding-bottom: $padding-vert
+
+  &.collapsed
+    width: 0
+    margin-right: -$gap
+    padding-left: 0
+    transition: width $sidebar-transition-time, margin-right .1ss ($sidebar-transition-time * .5)
+
+    .head
+      transform: translateX($padding-horiz)
+
+    .feather-chevrons-left,
+    .feather-chevrons-left:hover
+      transition: opacity $sidebar-transition-time * .5
+      cursor: default
+      opacity: 0
+
+
+.editor
+  margin-left: $gap
+  flex-grow: 1
+  position: relative
+
+  .top-bar
+    @include dark-card(false, $radius)
+    height: $bar-width
+    padding: 0 1.85rem 0 1rem
+    margin: $gap $gap $gap 0
+    user-select: none
+
+    display: flex
+    flex-direction: row-reverse
+    justify-content: flex-start
+    align-items: center
+
+    .feather.button
+      width: .85rem
+      height: .85rem
+      margin-left: 1.3rem
+
+      cursor: pointer
+
+    .spinner
+      width: .85rem
+      height: .85rem
+      margin-left: 1.3rem
+
+    .save-status
+      margin-right: .5rem
+
+    // Shift breadcrumbs to the left
+    .breadcrumbs
+      margin-right: auto
+
+    .open-sidebar
+      overflow: hidden
+      width: 2.5rem
+      transition: width $sidebar-transition-time
+
+      .feather-menu
+        display: block
+        width: .95rem
+        height: .95rem
+        color: $white
+        opacity: .75
+        cursor: pointer
+        transition: opacity .25s
+
+        &:hover
+          opacity: .95
+
+      &.collapsed
+        width: 0
+
+        .feather-menu,
+        .feather-menu:hover
+          transition: opacity $sidebar-transition-time
+          opacity: 0
+
+
+  $card-width: '(200px + 8.5rem)'
+
+  .cards-scroll
+    position: absolute
+    z-index: 10
+    $top: calc(#{$bar-width} + #{$gap * 2})
+    top: $top
+    right: $gap
+    width: calc(#{$card-width})
+    height: calc(100vh - #{$top} - #{$gap})
+    border-top-right-radius: $radius
+    padding: .75rem .75rem .75rem 0
+
+  .cards
+    position: static
+    width: 100%
+
+    &::before
+      // Fade behind cards stack
+      content: ''
+      position: absolute
+      top: 0
+      right: 0
+      $scale: .9
+      width: $scale * 100%
+      height: calc(100% - (#{$card-width} * #{1 - $scale}))
+      background: $dark-1
+      box-shadow: 0 0 calc(#{$card-width} * .05) calc(#{$card-width} * .05) $dark-1
+
+    .message
+      position: relative
+      margin-top: .35rem
+      margin-bottom: -.25rem
+      overflow: hidden
+      text-align: center
+      color: $light-text-hint
+      cursor: default
+
+      &:not(.run)
+        .title
+          transition: opacity .25s
+          opacity: 0
+          pointer-events: none
+
+        .help
+          transition: opacity .25s .1s
+          opacity: 1
+
+      &.run
+        .title
+          transition: opacity .25s .1s
+          opacity: 1
+
+        .help
+          transition: opacity .25s
+          opacity: 0
+          pointer-events: none
+
+      .title
+        position: absolute
+        bottom: .25rem
+        left: 0
+        width: 100%
+        font-family: $font-lato
+        font-weight: 700
+        font-size: .7rem
+        text-transform: uppercase
+        letter-spacing: .16em
+
+      .help
+        font-family: $font-lato
+        font-weight: 400
+        font-size: .725rem
+        margin-bottom: .1rem
+
+        div:nth-child(2)
+          margin-top: .15em
+          display: flex
+          align-items: center
+          justify-content: center
+
+        .feather
+          width: 1.1em
+          height: 1.1em
+          color: $light-text-primary
+          margin: 0 .35em
+          cursor: pointer
+          transition: opacity .15s 1s
+
+          &.checking
+            transition: opacity .15s
+            opacity: .25
+            pointer-events: none
+
+
+    .tests
+      position: relative
+      transition: opacity .35s
+
+      &.outdated
+        opacity: .55
+
+      .hidden-tests
+        margin-top: .75rem
+        text-align: center
+        cursor: default
+        font-family: $font-mono
+        font-size: .75rem
+        color: transparentize($white, .2)
+        transition: color .35s
+
+        &.passed
+          color: $green-solid
+
+        &.failed
+          color: $red-solid
+
+  .window.output
+    position: absolute
+    bottom: calc(#{$gap} + .7rem)
+    left: .75rem
+    z-index: 15
+
+    &.has-error ::v-deep .top-bar > .title
+      color: transparentize($red-solid, .35)
+
+    &.outdated
+      opacity: .55
+
+  .error-message
+    display: inline-block
+    font-family: $font-mono
+    font-size: .65rem
+    white-space: pre
+    tab-size: 2
+    color: $red-solid
+
+.pop-up-enter
+  transform: translateY(300%)
+  opacity: 0
+
+.pop-up-enter-active
+  transition: transform .35s cubic-bezier(.29, .99, .58, 1.28), opacity .35s
+
+.pop-up-leave-active
+  transition: transform .35s, opacity .35s
+
+.pop-up-leave-to
+  transform: translateY(300%)
+  opacity: 0

@@ -1,0 +1,107 @@
+@import 'src/styles/variables'
+@import '../../variables'
+
+
+.find-replace-card
+  position: relative
+  width: 100%
+
+  background: $dark-3
+  padding: .35rem .65rem .5rem
+  border-radius: $radius
+  overflow: hidden
+  margin-bottom: .7rem
+
+  .title
+    font-family: $font-lato
+    font-size: .5rem
+    font-weight: 700
+    text-transform: uppercase
+    color: $light-text-hint
+    letter-spacing: .055em
+
+  .group
+    $horiz-gap: .25rem
+    $vert-gap: .35rem
+
+    display: flex
+    align-items: stretch
+    margin-top: .35rem
+
+    input
+      flex-grow: 1
+
+      font-family: $font-mono
+      font-size: .6rem
+      font-weight: 500
+      color: transparentize($white, .2)
+
+      padding: .4rem .5rem
+      margin-right: $horiz-gap
+      background: transparentize($dark-1, .2)
+      border: 0
+      outline: 0
+      border-radius: $radius - 1px
+
+      transition: box-shadow .15s
+
+      &::placeholder
+        font-weight: 400
+        color: transparentize($white, .8)
+
+      &.no-matches
+        box-shadow: 0 0 0 .5px inset transparentize($red-solid, .55), 0 0 0 1px transparentize($red-solid, .55)
+
+    button
+      flex-grow: 0
+      width: 3.4rem
+
+      font-family: $font-nunito
+      font-size: .575rem
+      font-weight: 600
+      color: transparentize($white, .4)
+
+      background: transparentize($dark-1, .2)
+      cursor: pointer
+      border: 0
+      outline: 0
+      border-radius: $radius - 1px
+
+      transition: color .2s, background .2s, box-shadow .1s
+
+      &:focus:not(:active) // Show during tab selection but not while clicking
+        box-shadow: 0 0 1px 1px transparentize($green-solid, .2)
+
+      &:hover
+        color: transparentize($white, .2)
+
+      &:disabled
+        color: transparentize($white, .8)
+        background: lighten(transparentize($dark-1, .2), 2%)
+        cursor: not-allowed
+
+    .counter
+      width: 0
+      overflow: visible
+      white-space: nowrap
+      display: flex
+      align-items: center
+      justify-content: flex-end
+      transform: translateX(-$horiz-gap - .35rem)
+      animation: fade-in .15s
+
+      font-size: .55rem
+      color: transparentize($white, .7)
+      font-family: $font-nunito
+      font-weight: 600
+
+      span:first-child
+        margin-right: .125em
+
+      span:last-child
+        margin-left: .125em
+
+
+@keyframes fade-in
+  from
+    opacity: 0

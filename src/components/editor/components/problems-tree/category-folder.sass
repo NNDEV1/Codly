@@ -1,0 +1,55 @@
+@import 'src/styles/variables'
+
+.category-folder
+  color: transparentize($light-text-primary, .5)
+
+  .top
+    display: flex
+    align-items: center
+    flex-wrap: nowrap
+    cursor: pointer
+    user-select: none
+    transition: color .15s
+
+    &.active
+      color: transparentize($light-text-primary, .25)
+
+      .name
+        font-weight: 400
+
+      .feather-folder.complete
+        color: transparentize($green-1, .25)
+
+    .feather-chevron-right
+      width: 1em
+      height: 1em
+      margin-right: .95em
+      transition: transform .35s
+
+    .feather-folder
+      width: 1.05em
+      height: 1.05em
+      margin-right: .7em
+
+      &.complete
+        color: transparentize($green-1, .5)
+        transition: color .15s
+
+    .name
+      font-family: $font-nunito
+      font-weight: 300
+      font-size: 1em
+
+  .children-container
+    overflow: hidden
+    transition: height .35s
+
+  .children
+    padding-left: 3.7em
+    list-style-type: none
+    overflow: hidden // Prevent margin collapsing from throwing off height calculations
+
+
+  &.expanded
+    .feather-chevron-right
+      transform: rotate(.25turn)

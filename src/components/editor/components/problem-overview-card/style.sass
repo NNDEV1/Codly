@@ -1,0 +1,27 @@
+@import 'src/styles/variables'
+@import '../../variables'
+
+
+.problem-overview-card
+  position: relative
+  width: 100%
+
+  background: $dark-3
+  padding: .75rem 1rem 1rem
+  border-radius: $radius
+
+  overflow: hidden
+
+  h1
+    font-family: $font-nunito
+    font-weight: 700
+    font-size: 1rem
+    margin: 0
+
+  .progress
+    position: absolute
+    bottom: 0
+    left: 0
+    width: 100%
+    height: $radius
+    transition: width .25s, linear-gradient .25s
