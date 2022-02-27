@@ -1,0 +1,66 @@
+@import 'src/styles/variables'
+
+.sb-link
+  font-family: $font-nunito
+  font-weight: 400
+  font-size: .7rem
+  cursor: pointer
+  display: flex
+  align-items: center
+  padding: .4rem 0
+  position: relative
+
+  transition: opacity .25s
+
+  &.green
+    color: $green-solid
+
+  svg
+    width: .85rem
+    height: .85rem
+    margin: -.1rem .7rem 0 0
+    transform: translateY(7.5%)
+
+  .indicator
+    position: absolute
+    top: calc(50% - 2px)
+    left: -1.75rem
+    width: .9rem
+    height: 4px
+    background: linear-gradient(90deg, $green-1, $green-2)
+    transform: translate(-1rem)
+    transition: transform .075s ease-in
+    pointer-events: none
+
+  &:hover .indicator
+    background: $green-1
+    transform: translate(-.7rem)
+    transition: transform .075s
+
+  &.router-link-exact-active .indicator,
+  &.loose-match.router-link-active .indicator
+    background: linear-gradient(90deg, $green-1, $green-2)
+    transform: none
+    transition: transform .1s ease-out, background .1s
+
+  // Collapsed mode styles
+
+  &.collapsed
+    padding: .55rem 0
+
+    svg
+      width: .95rem
+      height: .95rem
+      margin: 0
+      opacity: .75
+      transition: opacity .25s
+
+      &:hover
+        opacity: .95
+
+    &.router-link-exact-active svg
+      opacity: 1
+
+  &.disabled
+    opacity: .4
+    pointer-events: none

@@ -1,0 +1,53 @@
+@import 'src/styles/variables'
+
+.sidebar-user-profile
+  display: flex
+  flex-direction: column
+  align-items: center
+  font-size: 15px
+
+  .picture
+    width: 70%
+    padding-bottom: 70%
+    margin-bottom: 3px
+
+    border-radius: 50%
+    background-size: cover
+    background-position: center center
+
+    transition: filter .15s, box-shadow .35s, margin-bottom .35s
+
+  &.compact
+    .picture
+      margin-bottom: 0
+
+  .name
+    font-family: $font-lato
+    font-weight: 500
+    font-size: 1em
+    text-transform: uppercase
+    letter-spacing: .08em
+    margin-top: .5em
+    white-space: nowrap
+
+  .role-badge
+    margin-top: 5px
+    font-family: $font-lato
+    font-size: 10px
+    font-weight: 900
+    color: $dark-1
+    text-transform: uppercase
+    letter-spacing: .2px
+    padding: 2px 6.5px
+    border-radius: 9px
+    background: $green-gradient
+
+
+  &:hover
+    .picture
+      filter: brightness(90%)
+
+  &.router-link-active
+    .picture
+      box-shadow: 0 0 0 5.25px $dark-1, 0 0 0 8px $green-1
+      margin-bottom: 9px

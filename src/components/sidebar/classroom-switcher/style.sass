@@ -1,0 +1,120 @@
+@import 'src/styles/variables'
+@import 'src/components/context-menu/style.sass'
+
+
+.classroom-switcher
+  position: relative
+
+h2
+  font-size: .6rem
+  color: $white
+  opacity: .4
+  letter-spacing: .1em
+  text-transform: uppercase
+  margin: 1.75em 0 .75em
+  padding: .25em 0
+  display: flex
+  align-items: center
+  cursor: pointer
+
+  &::after
+    content: ''
+    display: block
+    margin-left: .25em
+    width: 0
+    height: 0
+    $size: .5em
+    border-left: $size solid transparent
+    border-right: $size solid transparent
+    border-top: $size solid $white
+    transform: scaleX(.8)
+
+  &:hover
+    opacity: .5
+    transition: opacity .2s
+
+  &.beg-for-attention,
+  &.beg-for-attention:hover
+    opacity: .8
+
+
+ul.dropdown.list
+  position: absolute
+  left: -14px
+  width: calc(100% - 1.75rem + 28px)
+  top: -12px
+  background: $dark-2
+  list-style-type: none
+  margin: 0
+
+  border-radius: 5px
+  box-shadow: 0 10px 20px -5px transparentize($black, .75)
+  padding: 5px
+
+  li
+    position: relative
+
+    &.selected ~ :not(.action) .item
+      opacity: .6
+
+    &.selected .item
+      color: transparentize($light-text-primary, .3)
+
+    &.action:hover
+      background: none
+
+  .item
+    // Gets styles from imported contextmenu stylesheet
+    padding: 7px 9px
+    font-size: .7rem
+
+  &:not(.transition)
+    .item
+      transition-duration: 0s
+
+  .remove
+    color: $red-solid
+    position: absolute
+    right: 5px
+    padding: 4px
+    top: calc(50% - 12.5px)
+    width: 25px
+    height: 25px
+
+    cursor: pointer
+    border-radius: 3px
+
+    &:hover
+      background: lighten(#24242b, 2%)
+
+// Style modal content in slots
+
+div.loading-button
+  font-size: .65rem
+  padding: .375rem 1.2rem .44rem
+  border-radius: 3px
+  height: auto
+  width: auto
+
+  &.disabled
+    background: #1d1e1f
+
+  &.loading
+    width: auto
+    border-radius: 4px
+
+  ::v-deep .spinner
+    width: 1rem
+    height: 1rem
+
+ul.modal-content
+  font-size: .725rem
+  text-align: left
+  margin-top: .25em
+  padding-left: 1.3em
+
+button.bg
+  font-size: .65rem
+  padding: .375rem 1.85rem .44rem
+  border-radius: 4px
+  flex-grow: 1

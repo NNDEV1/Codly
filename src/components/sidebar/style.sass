@@ -1,0 +1,109 @@
+@import 'src/styles/variables'
+
+.sidebar
+  background: $dark-1
+  position: relative
+  width: 12rem
+  user-select: none
+
+  .sidebar-user-profile
+    position: relative
+    z-index: 3
+    margin: 2rem 25% 0
+    width: 50%
+
+  .feather-more-horizontal
+    position: absolute
+    z-index: 4
+    display: block
+    top: 1rem
+    right: 1.25rem
+    width: .9rem
+    height: .9rem
+    color: $white
+    cursor: pointer
+    opacity: .2
+    transition: opacity .25s
+
+    &:hover
+      opacity: .3
+
+  .links
+    padding: 1rem 0 1rem 1.75rem
+
+  &.collapsed
+    min-width: 0
+    width: auto
+
+    .sidebar-user-profile
+      width: 80%
+      margin: .75rem 10% .5rem
+
+    // In collapsed mode, position the context menu trigger to exactly cover the area of the sidebar
+    // profile picture, and make it invisible
+    .feather-more-horizontal
+      width: 80%
+      padding-bottom: 56%
+      top: .75rem
+      left: 10%
+      color: transparent
+
+    .links
+      padding: .3rem .775rem 1rem
+
+    .logout
+      transform: translateX(-50%)
+      opacity: .75
+
+      &:hover
+        opacity: .95
+
+      .feather-log-out
+        width: .95rem
+        height: .95rem
+        margin: 0
+
+  h2
+    font-size: .6rem
+    color: $light-text-hint
+    letter-spacing: .1em
+    text-transform: uppercase
+    margin: 1.75em 0 .75em
+
+  .classroom-switcher
+    position: relative
+    z-index: 5
+
+  .divider
+    margin: 1.25rem 0
+
+  .logout
+    position: absolute
+    bottom: 1.75em
+    left: 50%
+    // 1.2em is half the icon's width, so that the text can be centered regardless of the icon
+    transform: translateX(-50%) translateX(-.7rem)
+
+    display: flex
+    align-items: center
+
+    font-family: $font-lato
+    font-weight: 500
+    font-size: .65rem
+    opacity: .3
+    transition: opacity .25s
+    cursor: pointer
+
+    .feather-log-out
+      width: .75rem
+      height: .75rem
+      margin: 0 .65rem 0 0
+      transform: scaleX(-1)
+
+    span
+      text-transform: uppercase
+      letter-spacing: .15em
+      white-space: nowrap
+
+    &:hover
+      opacity: .75
