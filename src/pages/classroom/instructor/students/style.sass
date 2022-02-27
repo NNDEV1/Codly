@@ -1,0 +1,131 @@
+@import 'src/styles/variables'
+
+.classroom.page
+  height: 100%
+  display: flex
+  flex-direction: column
+  padding-bottom: 0
+
+.classroom-header
+  padding: 0 4px
+  flex: 0 0 auto
+
+.page-content
+  flex: 1 1 0
+  display: flex
+  align-items: stretch
+
+.empty-message
+  position: absolute
+  top: 45vh
+  left: 50%
+  transform: translate(-50%, -50%)
+
+.left.students-list
+  width: calc(15rem + 15px)
+  margin: -.85rem -15px 0 -1rem
+  flex: 0 0 15rem
+  max-height: calc(100% + (.85rem / 2))
+
+  .student
+    display: flex
+    align-items: center
+    padding: .85rem 0
+    border-top: 1.5px solid rgba(#cfd0e5, .075)
+    margin-left: 1rem
+    margin-right: 15px
+
+    &:first-child
+      border-top: 0
+
+    &.router-link-active
+      border-top-color: transparent
+      padding-left: 1rem
+      margin-left: 0
+      border-radius: 4px
+      background: $dark-4
+      transition: background .2s, border-color .2s
+
+      & + .student
+        border-top-color: transparent
+        transition: border-color .2s
+
+    .image
+      width: 3.75rem
+      height: 3.75rem
+      flex: 0 0 auto
+      border-radius: 50%
+      margin-right: .85rem
+      background-size: cover
+
+    .info
+      flex-grow: 1
+      color: $light-text-primary
+
+      .name
+        font-family: $font-nunito
+        font-size: 1rem
+        font-weight: 700
+
+      .username
+        display: flex
+        align-items: center
+        margin-top: -.3em
+
+        font-family: $font-lato
+        font-size: .75rem
+        font-weight: 500
+        opacity: .4
+
+        .feather-at-sign
+          // Double size and scale down to fix rendering issues
+          width: 1.6em
+          height: 1.6em
+          margin-right: .05em - .8em
+          transform: scale(.5) translate(-50%, 15%)
+
+
+.right
+  position: relative
+  flex: 1 1 auto
+  margin-left: calc(20px + 4%)
+
+  &.empty
+    background: transparentize($dark-1, .7)
+    border-radius: 6px
+    margin-bottom: 1.75rem
+
+    .empty-message
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      font-family: $font-lato
+      font-weight: 500
+      font-size: .75rem
+      color: transparentize($light-text-primary, .65)
+      width: 13.2rem
+      max-width: 100%
+      text-align: center
+
+  .student-details
+    padding: 0
+
+    & ::v-deep .top
+      height: 17rem
+      margin-top: 0
+
+      &[max-width~='500px']
+        height: 40rem
+
+      .card.c3,
+      .card.c4
+        display: none
+
+// Style modal content in slots
+
+button.bg
+  font-size: .65rem
+  padding: .375rem 1.85rem .44rem
+  border-radius: 4px
+  flex-grow: 1

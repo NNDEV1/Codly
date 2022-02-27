@@ -1,0 +1,120 @@
+@import 'src/styles/variables'
+@import 'src/styles/mixins'
+
+
+.problem-summary
+  width: 100%
+  border-radius: 4px
+  overflow: hidden
+  margin: 0
+  transition: margin .3s, background .2s, border-radius .3s
+  user-select: none
+
+  .top
+    padding: .3rem 1rem
+    display: flex
+    align-items: center
+    cursor: pointer
+    transition: background .2s, padding .2s
+
+    .label
+      min-width: 15ch
+      max-width: 15ch
+      margin: 0 .75rem
+      padding: .325rem .75rem
+      border-radius: 3.5px
+      text-align: center
+
+      font-family: $font-nunito
+      font-weight: 600
+      font-size: .7rem
+      overflow: hidden
+      text-overflow: ellipsis
+      background: #18181b
+      color: transparentize($light-text-primary, .15)
+      transition: background .3s, color .3s, max-width .3s
+
+    .bar-wrapper
+      flex: 1 1 auto
+      position: relative
+      display: flex
+      align-items: center
+
+      height: 5px
+      border-radius: 2.5px
+      background: rgba(174, 181, 198, .05)
+
+      &.incorrect
+        justify-content: flex-end
+
+      &.correct
+        justify-content: flex-start
+
+      .bar
+        height: 5px
+        min-width: 5px
+        border-radius: 2.5px
+
+        &.incorrect
+          background: linear-gradient(to left, #c13434, #df4141)
+
+        &.correct
+          background: linear-gradient(to right, #1db965, #4dfb9b)
+
+
+
+  .bottom-content
+    position: relative
+    min-height: 7rem
+    max-height: 12.5rem
+    padding: .75rem 0
+    display: flex
+    align-items: stretch
+
+    .half
+      flex: 1 1 0
+      padding: 0 1rem
+
+      &:first-child
+        text-align: right
+
+      h4
+        margin: 0 0 .7rem
+        font-family: $font-lato
+        font-weight: 600
+        font-size: .7rem
+        color: transparentize($light-text-primary, .15)
+        text-align: center
+
+    .separator
+      position: absolute
+      width: 2px
+      height: 75%
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      background: transparentize($dark-2, .4)
+
+
+  &:not(.expanded):hover
+    .top
+      background: $dark-4
+
+  &.expanded
+    @include dark-card
+    border-radius: 6px
+    margin: 1rem 0
+    transition: margin .3s, background .3s, box-shadow .3s, border-radius .3s
+
+    .top
+      background: transparentize($dark-2, .1)
+      padding: .5rem 1rem
+      transition: background .2s, padding .3s
+
+      .label
+        background: $dark-1
+        color: $light-text-secondary
+        max-width: 20ch
+
+    &:first-child
+      margin-top: 0

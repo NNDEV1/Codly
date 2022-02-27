@@ -1,0 +1,55 @@
+// Styles shared among all pages
+
+@import fonts
+@import variables
+
+@import responsive-classes
+@import animations
+@import md-description
+@import scrollbar
+
+
+*,
+*::before,
+*::after
+  box-sizing: border-box
+
+\:root
+  font-size: calc(.35vw + .35vh + .15vmin + 12px)
+
+body
+  font-family: $font-nunito
+  line-height: 1.4
+  margin: 0
+  padding: 0
+
+h1,
+h2,
+h3,
+h4,
+h5
+  font-family: $font-lato
+  font-weight: 700
+
+a
+  text-decoration: none
+  color: inherit
+
+canvas
+  user-select: none
+
+*:focus
+  outline-color: saturate(lighten($green-solid, 5%), 65%)
+
+
+.page.cards-dashboard
+  position: absolute
+  width: 100%
+  max-width: 50rem
+  left: 50%
+  transform: translate(-50%)
+  padding: 0 calc(20px + 4%)
+
+.page.classroom
+  padding-top: 2.5rem
+  padding-bottom: 1.75rem

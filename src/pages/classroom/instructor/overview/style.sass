@@ -1,0 +1,177 @@
+@import 'src/styles/variables'
+
+.classroom-header
+  padding: 0 4px
+
+.row
+  display: flex
+  flex-wrap: wrap
+  margin-right: -20px
+
+  .card
+    flex: 1 1 0
+    min-width: 16rem
+    min-height: 14rem
+    margin: 0 20px 20px 0
+
+
+.card
+  position: relative
+
+  &.contains-view-more
+    padding-bottom: .75rem + (.75rem * 1.4) + .25rem
+
+
+
+.students
+  .students-list
+    .student
+      float: left
+      width: calc(50% - 1rem)
+      margin-right: 1rem
+      margin-bottom: .75rem
+
+      display: flex
+      align-items: center
+      justify-content: flex-start
+
+
+      .image
+        width: 1.5rem
+        height: 1.5rem
+        flex: 0 0 1.5rem
+        border-radius: 50%
+        background-size: cover
+        margin-right: .6rem
+
+      .name
+        flex: 1 1 0
+        min-width: 0
+        font-family: $font-lato
+        font-weight: 400
+        font-size: .8rem
+        color: $light-text-secondary
+        white-space: nowrap
+        overflow: hidden
+        text-overflow: ellipsis
+
+
+
+.assignments
+  .assignments-list
+    .assignment
+      width: 100%
+      border-radius: 4px
+      display: flex
+      align-items: center
+      transition: background .2s
+      margin-bottom: .75rem
+
+      @import '../../common/assignment-list/assignment-list-item/item-elements.sass'
+
+
+      .info h2
+        opacity: .9
+
+      .icon
+        background: #232428
+
+
+
+.empty
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+  font-family: $font-lato
+  font-weight: 500
+  text-align: center
+
+  h3
+    font-size: .9rem
+    color: $light-text-hint
+    margin: 0 0 .1rem
+
+  .cta
+    display: flex
+    justify-content: center
+    align-items: center
+    cursor: pointer
+
+    font-size: .7rem
+    color: #308a59
+    transition: color .15s
+
+    &:hover
+      color: saturate(lighten(#308a59, 3%), 5%)
+
+
+    .feather
+      width: .75rem
+      height: .75rem
+      margin-right: .15rem
+      transform: translateY(5%)
+
+
+
+.view-more
+  position: absolute
+  bottom: .75rem
+  left: 1.2rem
+  display: flex
+  align-items: center
+  font-family: $font-lato
+  font-size: .75rem
+  font-weight: 400
+  color: $white
+  opacity: .3
+  transition: opacity .2s
+  cursor: pointer
+
+  .feather-arrow-right
+    width: .8rem
+    height: .8rem
+    margin-left: .2rem
+    transform: translateY(10%)
+    transition: transform .2s
+
+  &:hover
+    opacity: .4
+
+    .feather-arrow-right
+      transform: translate(.2rem, 10%)
+
+
+
+// Stagger fade-in cards
+
+.unfetched
+  .card
+    box-shadow: none
+    opacity: .4
+    transition: none
+
+    & ::v-deep
+      & > *
+        opacity: 0
+        transition: none
+
+// sass-lint:disable no-mergeable-selectors
+.card
+  transition: opacity .35s
+
+  & ::v-deep
+    & > *
+      transition: opacity .35s
+
+  @for $i from 1 through 2
+    &:nth-child(#{$i})
+      $delay: .075s * ($i - 1)
+
+      &,
+      & ::v-deep
+        & > *
+          transition-delay: $delay
+
+// sass-lint:enable no-mergeable-selectors

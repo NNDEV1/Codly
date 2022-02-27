@@ -1,0 +1,97 @@
+@import 'src/styles/variables'
+
+.classroom.page
+  height: 100%
+  display: flex
+  flex-direction: column
+  padding-bottom: 0
+
+  .classroom-header
+    margin: .5rem 0
+    flex: 0 0 auto
+
+    input
+      max-width: 100%
+      background: transparent
+      font: inherit
+      border: 0
+      outline: 0
+      padding: 0
+      color: inherit
+      overflow: hidden
+      text-overflow: ellipsis
+
+      &::placeholder
+        color: transparentize($white, .89)
+        transition: color .2s
+
+      &:focus::placeholder
+        color: transparentize($white, .85)
+
+      &:focus + .cta
+        display: none
+
+    .cta
+      display: inline-block
+      font-family: $font-lato
+      font-size: .6rem
+      font-weight: 500
+      color: transparentize($light-text-primary, .8)
+      text-transform: uppercase
+      letter-spacing: .06em
+      transform: translateY(-.15rem)
+      cursor: pointer
+      transition: color .2s
+
+      &:hover
+        color: transparentize($light-text-primary, .75)
+
+    .due-date
+      display: flex
+      align-items: center
+      font-family: $font-lato
+      font-size: .8rem
+      font-weight: 600
+      color: $light-text-primary
+      opacity: .6
+
+      .feather
+        width: .9rem
+        height: .9rem
+        margin-right: .3rem
+
+  .description
+    flex: 0 0 auto
+    margin: 0 0 1.5rem
+    width: 50%
+    line-height: 1.45em
+    max-height: 1.48em * 4
+    font-family: $font-nunito
+    font-weight: 400
+    font-size: .75rem
+    color: transparentize($light-text-primary, .3)
+
+    background: none
+    border: 0
+    outline: 0
+    resize: none
+    padding: 0
+
+    &::placeholder
+      color: transparentize($white, .8)
+      transition: color .2s
+
+    &:focus::placeholder
+      color: transparentize($white, .75)
+
+.assignment-content
+  flex: 1 1 auto
+  min-height: 0
+
+.problems-list
+  width: 100%
+  max-width: 33rem
+  position: relative
+  left: 50%
+  transform: translate(-50%)
+  padding-bottom: 1.75rem

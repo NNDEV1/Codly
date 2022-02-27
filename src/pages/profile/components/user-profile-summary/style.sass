@@ -1,0 +1,43 @@
+@import 'src/styles/variables'
+
+.user-profile-summary
+  display: flex
+  flex-direction: column
+  align-items: center
+  font-size: 15px
+
+  .picture
+    flex-grow: 1
+    margin-bottom: .3rem
+
+    border-radius: 50%
+    background-size: cover
+    background-position: center center
+    overflow: hidden
+
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      opacity: 0 // Reverted in JS when size is set
+
+  .name
+    font-family: $font-nunito
+    font-size: 1.1rem
+    font-weight: 700
+
+  .username
+    display: flex
+    align-items: center
+    margin-top: -.2em
+
+    font-family: $font-lato
+    font-size: .8rem
+    opacity: .45
+
+    .feather-at-sign
+      // Double size and scaled down to fix rendering errors
+      width: 1.6em
+      height: 1.6em
+      margin-right: .05em - .8em
+      transform: scale(.5) translate(-50%, 15%)

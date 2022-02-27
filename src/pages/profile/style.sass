@@ -1,0 +1,104 @@
+@import 'src/styles/variables'
+@import layout
+
+
+.card
+  @include dark-card
+
+  &,
+  & > *
+    transition: opacity .35s
+
+  &.empty
+    box-shadow: none
+    opacity: .4
+
+    *
+      opacity: 0
+
+  @for $i from 1 through 5
+    &:nth-child(#{$i})
+      $delay: .075s * ($i - 1)
+
+      &,
+      & > *
+        transition-delay: $delay
+
+
+.card.summary // sass-lint:disable-line empty-line-between-blocks
+  position: relative
+  padding: 1.4rem .5rem 1.2rem
+
+  .user-profile-summary
+    height: 100%
+
+  [name='profile-summary-more']
+    position: absolute
+    display: block
+    top: .8rem
+    right: 1.25rem
+    width: .9rem
+    height: .9rem
+    color: $white
+    cursor: pointer
+    opacity: .2
+    transition: opacity .25s
+
+    &:hover
+      opacity: .3
+
+
+.card.detail // Height is ~5.5rem
+  padding: 0 24px
+  user-select: none
+
+  display: flex
+  align-items: center
+  justify-content: flex-start
+
+  .left
+    flex: 0 0 auto
+    // Double size and scaled down to resolve rounding errors
+    position: relative
+    width: 2.3rem * 2
+    height: 2.3rem * 2
+    margin-right: -2.3rem
+    transform: scale(.5) translate(-50%)
+    border-radius: 50%
+
+    &.gradient
+      background: $green-gradient
+
+    .feather
+      position: absolute
+      top: 50%
+      left: 50%
+      transform: translate(-50%, -50%)
+      width: 57.5%
+      height: 57.5%
+      color: $black
+      opacity: .3
+
+
+  .right
+    flex: 1 0 auto
+    margin-left: .75rem
+
+    .large
+      font-family: $font-nunito
+      font-weight: 700
+      color: $light-text-primary
+      font-size: 1.1rem
+
+    .small
+      font-family: $font-lato
+      font-weight: 500
+      color: transparentize($light-text-primary, .7)
+      font-size: .6rem
+      text-transform: uppercase
+      letter-spacing: .066em
+
+
+.card.detail.c1
+  .left
+    transform: translate(-25%) scale(.55)
